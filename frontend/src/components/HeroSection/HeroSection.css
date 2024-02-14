@@ -1,0 +1,16 @@
+/* frontend/src/components/HeroSection/HeroSection.css */
+
+.hero {
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    min-height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0); /* Fully transparent to allow the global gradient to be visible */
+    z-index: 2; /* Higher than the background to allow content to scroll over it */
+  }
+  
