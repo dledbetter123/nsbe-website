@@ -1,16 +1,50 @@
 /* frontend/src/components/HeroSection/HeroSection.css */
 
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* This will cover the full viewport height */
+  z-index: 0; /* Lower z-index since this will be under the content */
+}
+
 .hero {
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
-    min-height: 100vh; /* Full height of the viewport */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0); /* Fully transparent to allow the global gradient to be visible */
-    z-index: 2; /* Higher than the background to allow content to scroll over it */
-  }
-  
+  color: rgb(248, 230, 185);
+  padding: 50px 20px;
+  text-align: center;
+  min-height: 100vh; /* Full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2; /* Ensures the text content is above the fixed background image */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  opacity: 40%;
+  z-index: 1;
+}
+
+.button {
+  background-color: #000; /* Button background color */
+  color: rgb(248, 230, 185);
+  border: 2px solid rgb(248, 230, 185); /* Button border */
+  padding: 10px 20px; /* Button padding */
+  font-size: 16px; /* Button text size */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  border-radius: 5px; /* Optional: Rounds the corners of the button */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+  outline: none; /* Removes the outline to keep the design clean */
+  text-decoration: none; /* Prevents underline on links if your button is an <a> tag */
+  display: inline-block; /* Ensures proper spacing around the button */
+}
+
+.button:hover {
+  transform: scale(1.1); /* Expands the button to 110% of its original size */
+  box-shadow: 0 0 15px #FFD700; /* Creates a glowing effect around the button */
+}

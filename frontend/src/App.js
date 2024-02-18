@@ -5,6 +5,7 @@ import './App.css';
 import HeroSection from './components/HeroSection/HeroSection';
 import AboutSection from './components/AboutSection/AboutSection';
 import EventsSection from './components/EventsSection/EventsSection';
+import ImpactSection from './components/ImpactSection/ImpactSection';
 import Footer from './components/Footer/Footer';
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
       </header> */}
       <HeroSection />
       <AboutSection />
+      <ImpactSection />
       <EventsSection />
+
       <Footer />
     </div>
   );

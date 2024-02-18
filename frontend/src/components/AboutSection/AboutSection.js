@@ -7,8 +7,8 @@ const AboutSection = () => {
     return (
         <div id="about" className="about-section">
             <div className="about-content">
-                <h2>About NSBE</h2>
-                <p>The National Society of Black Engineers (NSBE) is one of the largest student-governed organizations based in the USA. NSBE aims to increase the number of culturally responsible Black Engineers who excel academically, succeed professionally, and positively impact the community.</p>
+                <h2 style={{ fontSize: "32px" }}>About NSBE</h2>
+                <p style={{ fontSize: "20px" }}>The National Society of Black Engineers (NSBE) is one of the largest student-governed organizations based in the USA. NSBE aims to increase the number of culturally responsible Black Engineers who excel academically, succeed professionally, and positively impact the community.</p>
             </div>
         </div>
     );
