@@ -10,14 +10,14 @@ const Portfolio = () => {
           id: 1,
           mediaSrc: img1,
           title: 'Academic Recognition',
-          description: 'The app connects you to talented people around the world. Download it from the play store.',
+          description: 'Our organization organizes and hosts events ',
           link: '#',
           type: 'image',
         },
         {
           id: 2,
           mediaSrc: img2,
-          title: 'Project Title Here',
+          title: 'Event Title Here',
           description: 'A brief description of the project. Highlight key features or benefits.',
           link: '#',
           type: 'video',
@@ -25,18 +25,18 @@ const Portfolio = () => {
         {
           id: 3,
           mediaSrc: img3,
-          title: 'Another Project',
-          description: 'Describe the project, its impact, or unique selling points.',
+          title: 'Another Event',
+          description: 'Describe the event, its impact.',
           link: '#',
           type: 'image',
         },
       ], []); // Dependencies array is empty, meaning this only runs once, perfect
 
-    // Refs for each video element
+    // ref for each video element
     const videoRefs = useRef([]);
 
     useEffect(() => {
-    // Initialize refs
+    // initialize refs
     videoRefs.current = videoRefs.current.slice(0, works.length);
     }, [works]);
 
@@ -55,7 +55,7 @@ const Portfolio = () => {
     return (
     <div id="portfolio" className="portfolio-section">
         <div className="container">
-        <h1 className="sub-title">Our Impact</h1>
+        <h1 style={{ color: 'white' }}>Our Impact</h1>
         <div className="work-list">
             {works.map((work, index) => (
             <div 

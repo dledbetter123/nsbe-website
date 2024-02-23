@@ -21,6 +21,9 @@
   color: white;
 }
 
+.users {
+  z-index: 10000;
+}
 /* In App.css or index.css */
 
 body, html {

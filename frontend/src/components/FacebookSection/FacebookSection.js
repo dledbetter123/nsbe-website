@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
-
-const UsersPanel = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('https://your-aws-api-endpoint/users');
-      const data = await response.json();
-      setUsers(data);
-    };
-
-    fetchUsers();
-  }, []);
+import Carousel from '../SwipeableGridPage/Carousel';
+import ProjectCard from '../ProjectCard/ProjectCard';
+const UsersPanel = ({ users }) => {
+  const carouselItems = users.map(user => ({
+    content: (
+      <ProjectCard
+        title={user.fullName}
+        description={user.shortBio}
+        resumelink={user.resumeLink}
+      />
+    )
+  }));
 
   return (
-    <div className="users-container">
-      {users.map(user => (
-        <div key={user.id} className="user-panel">
-          <h2>{user.name}</h2>
-          {/* Render other user fields here */}
-        </div>
-      ))}
-    </div>
+    <Carousel items={carouselItems}/>
   );
 };
 
