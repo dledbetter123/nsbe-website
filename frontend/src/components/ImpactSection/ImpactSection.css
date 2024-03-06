@@ -3,7 +3,7 @@
   }
   
   .container {
-    padding: 0 20px; /* Add padding to the container for space around the grid */
+    padding: 0 20px;
   }
   
   .work-list {
@@ -19,13 +19,13 @@
     position: relative;
     overflow: hidden;
     display: flex;
-    flex-direction: column; /* Ensures content within .work is flexibly laid out */
+    flex-direction: column; 
   }
   
   .work img {
     width: auto;
-    height: 100%; /* Adjust the height to auto for maintaining aspect ratio */
-    object-fit: cover; /* Ensures the image covers the area, can be adjusted to 'contain' for no cropping */
+    height: 100%; 
+    object-fit: cover;
     border-radius: 10px;
     display: block;
     transition: transform 0.5s;

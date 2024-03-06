@@ -1,32 +1,32 @@
 /* frontend/src/components/AboutSection/AboutSection.css */
 
 .about-section {
-  min-height: 50vh; /* Full height of the viewport */
+  min-height: 50vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: rgba(255, 255, 255, 0); /* Preserved; the section remains transparent to show the global dark gradient */
-  z-index: 2; /* Ensures the content scrolls over the fixed background */
+  background-color: rgba(255, 255, 255, 0); 
+  z-index: 2; 
 }
 
 .about-content {
-  max-width: 800px; /* Adjust as needed */
+  max-width: 800px; 
   margin: 0 auto;
   padding: 50px;
   border-radius: 15px;
-  color: #FFF8DC; /* Soft white for the text, offering better readability */
-  text-align: left; /* For a more traditional reading experience */
+  color: #FFF8DC; 
+  text-align: left; 
 }
 
 .about-content h2 {
-  color: #FFD700; /* Gold color for headings */
-  margin-bottom: 20px; /* Adds some space below the heading */
+  color: #FFD700; 
+  margin-bottom: 20px; 
 }
 
 .about-content p {
-  color: #FFFFFF; /* Bright white for the paragraph text, ensuring high contrast */
-  line-height: 1.6; /* Increases line height for better readability */
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Adds a subtle shadow to text for improved contrast on varied backgrounds */
+  color: #FFFFFF; 
+  line-height: 1.6; 
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }

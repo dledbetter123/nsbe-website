@@ -12,8 +12,13 @@ import (
 	"github.com/joho/godotenv"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 // global variable to hold the database connection
@@ -38,6 +43,80 @@ func init() {
 	usersCollection = client.Database("nsbemembers").Collection("members")
 }
 
+func generatePresignedURL(w http.ResponseWriter, r *http.Request) {
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("us-east-1"), // Replace with your AWS region
+	})
+	if err != nil {
+		log.Fatalf("Failed to create session: %v", err)
+	}
+
+	// Create S3 service client
+	svc := s3.New(sess)
+	// Extract filename and filetype from query parameters
+	fileName := r.URL.Query().Get("filename")
+	fileType := r.URL.Query().Get("filetype")
+
+	// Validate or sanitize the inputs as necessary
+	// ...
+
+	// Use fileName and fileType to generate the pre-signed URL
+	// Assume svc is an initialized instance of *s3.S3
+	req, _ := svc.PutObjectRequest(&s3.PutObjectInput{
+		Bucket:      aws.String("nsbeheadshots"),
+		Key:         aws.String("uploads/" + fileName),
+		ContentType: aws.String(fileType), // Setting the ContentType for the uploaded file
+	})
+	urlString, err := req.Presign(15 * time.Minute)
+
+	if err != nil {
+		log.Println("Failed to sign request", err)
+		http.Error(w, "Failed to generate pre-signed URL", http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(map[string]string{"url": urlString})
+}
+
+// func createMember(w http.ResponseWriter, r *http.Request) {
+// 	var member Member
+// 	if err := json.NewDecoder(r.Body).Decode(&member); err != nil {
+// 		http.Error(w, err.Error(), http.StatusBadRequest)
+// 		return
+// 	}
+
+// 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+// 	defer cancel()
+
+// 	result, err := usersCollection.InsertOne(ctx, member)
+// 	if err != nil {
+// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+// 		return
+// 	}
+
+// 	// Create a struct to format your JSON response
+// 	type response struct {
+// 		Message  string `json:"message"`
+// 		MemberID string `json:"memberId"` // Use the appropriate type for the ID
+// 	}
+
+// 	// Fill the response struct
+// 	resp := response{
+// 		Message:  "Member added successfully",
+// 		MemberID: result.InsertedID.(primitive.ObjectID).Hex(), // Ensure proper type assertion; may vary based on driver version
+// 	}
+
+// 	// Set content type to application/json
+// 	w.Header().Set("Content-Type", "application/json")
+
+// 	// Marshal and write the response as JSON
+// 	if err := json.NewEncoder(w).Encode(resp); err != nil {
+// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+// 		return
+// 	}
+// }
+
 func createMember(w http.ResponseWriter, r *http.Request) {
 	var member Member
 	if err := json.NewDecoder(r.Body).Decode(&member); err != nil {
@@ -54,7 +133,33 @@ func createMember(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Member added with ID: %v", result.InsertedID)
+	// Ensure proper type assertion for the version of the MongoDB Go driver
+	insertedID, ok := result.InsertedID.(primitive.ObjectID)
+	if !ok {
+		http.Error(w, "Failed to parse inserted ID", http.StatusInternalServerError)
+		return
+	}
+
+	// Create a struct to format your JSON response
+	type response struct {
+		Message  string `json:"message"`
+		MemberID string `json:"memberId"`
+	}
+
+	// Fill the response struct
+	resp := response{
+		Message:  "Member added successfully",
+		MemberID: insertedID.Hex(), // Convert ObjectID to hex string
+	}
+
+	// Set content type to application/json
+	w.Header().Set("Content-Type", "application/json")
+
+	// Marshal and write the response as JSON
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func listMembers(w http.ResponseWriter, r *http.Request) {
@@ -118,6 +223,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	http.HandleFunc("/generateurl", corsMiddleware(generatePresignedURL))
 	http.HandleFunc("/members/newmember", corsMiddleware(createMember)) // create
 	http.HandleFunc("/members/list", corsMiddleware(listMembers))       // read
 	http.HandleFunc("/", handler)                                       // status

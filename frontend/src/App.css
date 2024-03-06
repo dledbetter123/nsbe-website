@@ -21,10 +21,24 @@
   color: white;
 }
 
+.search-container {
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+.search-bar {
+  width: 50%; 
+  padding: 10px;
+  font-size: 16px; 
+  border: 2px solid #ddd; 
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5); 
+}
+
+
 .users {
   z-index: 10000;
 }
-/* In App.css or index.css */
 
 body, html {
   margin: 0;
@@ -39,10 +53,10 @@ body, html {
   height: auto;
   background: linear-gradient(to bottom, 
     rgba(0, 0, 0, 1) 0%, 
-    rgb(70, 56, 36) 100%); /* Extended gradient endpoint */
+    rgb(43, 34, 22) 100%); 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  will-change: transform; /* Optimize for performance */
+  will-change: transform; 
 }

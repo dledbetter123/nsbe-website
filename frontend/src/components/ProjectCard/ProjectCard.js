@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProjectCard.css';
 
-const ProjectCard = ({ title, description, resumelink }) => {
+const ProjectCard = ({ title, description, resumelink, headshotlink }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -45,6 +45,7 @@ const ProjectCard = ({ title, description, resumelink }) => {
       onMouseLeave={handleMouseLeave}
       onClick={() => window.open(resumelink, '_blank')} // Keeping the click to redirect
     >
+      <img src={headshotlink} alt="Profile" className="project-card-image" />
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="project-card-footer">Click me</div>

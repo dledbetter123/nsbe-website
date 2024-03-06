@@ -31,20 +31,20 @@
 }
 
 .button {
-  background-color: #000; /* Button background color */
+  background-color: #000; 
   color: rgb(248, 230, 185);
-  border: 2px solid rgb(248, 230, 185); /* Button border */
-  padding: 10px 20px; /* Button padding */
-  font-size: 16px; /* Button text size */
-  cursor: pointer; /* Changes cursor to pointer on hover */
-  border-radius: 5px; /* Optional: Rounds the corners of the button */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
-  outline: none; /* Removes the outline to keep the design clean */
-  text-decoration: none; /* Prevents underline on links if your button is an <a> tag */
-  display: inline-block; /* Ensures proper spacing around the button */
+  border: 2px solid rgb(248, 230, 185); 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  outline: none;
+  text-decoration: none; 
+  display: inline-block;
 }
 
 .button:hover {
-  transform: scale(1.1); /* Expands the button to 110% of its original size */
-  box-shadow: 0 0 15px #FFD700; /* Creates a glowing effect around the button */
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #FFD700;
 }

@@ -10,23 +10,23 @@ const Portfolio = () => {
           id: 1,
           mediaSrc: img1,
           title: 'Academic Recognition',
-          description: 'Our organization organizes and hosts events ',
+          description: 'Our organization helps organize and host schoolwide networking events',
           link: '#',
           type: 'image',
         },
         {
           id: 2,
           mediaSrc: img2,
-          title: 'Event Title Here',
-          description: 'A brief description of the project. Highlight key features or benefits.',
+          title: 'Workshops',
+          description: 'We develop workshops that help our chapter learn a specific skill such as professional networking or web development',
           link: '#',
           type: 'video',
         },
         {
           id: 3,
           mediaSrc: img3,
-          title: 'Another Event',
-          description: 'Describe the event, its impact.',
+          title: 'Weekly General Body Meetings',
+          description: 'We hold weekly general body meetings to engage our chapter in skill building or mental health exercises, and to learn about the challenges they face in their journey to becoming engineers',
           link: '#',
           type: 'image',
         },
@@ -78,8 +78,8 @@ const Portfolio = () => {
                 />
                 )}
                 <div className="layer">
-                <h3>{work.title}</h3>
-                <p>{work.description}</p>
+                <h3 style={ {fontSize: '30px', color: 'white'} }>{work.title}</h3>
+                <p style={ {fontSize: '22px', color: 'white'} }>{work.description}</p>
                 <a href={work.link} className="view-project">View Project</a>
                 </div>
             </div>
